@@ -29,13 +29,15 @@ void signals_handler(int sig)
 {
     if (sig == SIGINT)
     {
-        printf("\nReceived SIGINT\n");
-        // rl_on_new_line();
-        // rl_replace_line("", 0);
-        // rl_redisplay();
+        printf("\n");
+        rl_on_new_line();
+        rl_replace_line("", 0);
+        rl_redisplay();
     }
     else if (sig == SIGQUIT)
-        printf("\nReceived SIGQUIT\n");
+        {
+            signal(SIGQUIT, SIG_IGN);
+        }
 }
 
 void mask_and_catch_signals(t_sigaction *sig)
